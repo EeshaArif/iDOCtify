@@ -656,10 +656,10 @@ header{
 .section-signinform{
     background-color: #f5f2f2;
 
-}
+}/*
 .signinform p:nth-child(4){
     display: none;
-}
+}*/
 .signout header{
     padding-top: 15%;
 }
@@ -668,6 +668,21 @@ header{
 }
 .section-signinform header{
     max-height: 100vh;
+}
+#detect-header{
+padding-top: 1%;
+padding-bottom: 10%;
+}
+#detect-header .login{
+    padding:2%;
+}
+#detect-header #login3{
+margin-bottom: 2%;
+    
+}
+#detect-header .login p{
+    padding: 3%;
+
 }
 .primaryAction:link,
 .primaryAction:visited,

@@ -1,13 +1,28 @@
-My Page
-<form class="" action="{% url 'display' %}" method="post">
-  {% csrf_token %}
-  <input type="text" name="srch1" placeholder="Enter first name or last name">
-  <button type="submit" name="button">Search</button>
-</form>
+{% extends "account/base.html" %}
 
-<a href="{% url 'history' %}">Save New History</a>
-<form class="" action="{% url 'display' %}" method="post">
-  <input type="button" name="patient-history" value="Search History by face recognition">
+{% block content %}
+<header id="detect-header">
+<form class="login signinform" id="login3"action="{% url 'display' %}" method="post">
+  {% csrf_token %}
+  <P>
+  <input type="text" name="srch1" placeholder="Enter first name or last name">
+</P><p>
+  <button type="submit" name="button">Search</button>
+</p>
 </form>
-<a href="{% url 'account_logout' %}">Logout</a>
+<!--<div class="Row">
+<a href="{% url 'history' %}">Save New History</a>
+</div>-->
+<div class="row"></div>
+<form class="login signinform"  action="/detect" method="post">
+	<p>Try our facial recognition feature</p>
+	<p>
+  <button type="submit" name="patient-history">Search History by face recognition</button></p>
+</form>
+<!--<a href="{% url 'account_logout' %}">Logout</a>-->
+<!--<div class="row">
   <a href="/detect"><img  class="img-responsive" /> detect </a>
+</div>-->
+</header>
+
+{% endblock %}
