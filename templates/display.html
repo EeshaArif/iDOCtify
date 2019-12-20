@@ -1,3 +1,541 @@
+
+{% extends "base_.html" %}
+{% load static %}
+{% load i18n %}
+            {% block content %}
+
+
+
+
+
+{% if message %}
+        <section class="js--section-declare" id="hieght">
+                 
+          
+
+                     <div class="row tags">
+
+                           
+                           <div class="col row box plan-box feedback0">
+                            <h3><strong>Warning:</strong></h3>
+                            <div class="admin">
+<p class="">{{message}}</p>
+<a class="" href="/admin/">Admin</a>
+   </div>
+ </div>
+</div>
+</section>
+{% else %}
+
+{% if srch %}
+
+     <section class="section-schedule js--section-features js--section-declare" id="features">
+             
+   
+                    <div class="row">
+
+                        <h2 class="guidelines">{{srch.first_name}} {{srch.last_name}}</h2>
+                             <div class="col box ">
+               
+        
+                        
+                        </div>    
+                    </div>
+
+            <div class="row js--wp-3">
+
+
+                <div class="row">
+
+                       <div class="col span-1-of-7">
+                <h4>Personal Information</h4>
+                                                <div class="container2">
+
+                                                  <ul class="responsive-table">
+                                                    <li class="table-header">
+                                                      <div class="coll coll-1"></div>
+                                                      <div class="coll coll-2"></div>
+    
+                                                    <li class="table-row">
+                                                      <div class="coll coll-1">First Name:</div>
+                                                      <div class="coll coll-2">{{srch.first_name}}
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1">Last Name:</div>
+                                                      <div class="coll coll-2">{{srch.last_name}}
+
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1">Age:</div>
+                                                      <div class="coll coll-2">
+{{srch.age}}
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1">Gender:</div>
+                                                      <div class="coll coll-2">
+                                                        {{srch.gender}}
+
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1"> Email:</div>
+                                                      <div class="coll coll-2">{{srch.email}}
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1">Address:</div>
+                                                      <div class="coll coll-2">{{srch.address}}
+                                                        </div>
+                                                     
+                                                    
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1"> Contact No:</div>
+                                                      <div class="coll coll-2">{{srch.phone}}
+
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1"> Occupation:</div>
+                                                      <div class="coll coll-2">{{srch.occupation}}
+
+                                                        </div>
+
+                                                    </li>                             
+
+
+
+                                                  </ul>
+                                                </div>
+
+                </div>
+
+                       <div class="col span-1-of-7">
+                <h4>Photograph</h4>
+                                                <div class="container2 photograph">
+
+                                                  <img src="{{ srch.image.url}}" alt="{{ patient.first_name }} {{patient.last_name}}">
+                                                </div>
+
+                </div>
+
+                </div>
+
+                    </section>
+
+                        <section class="section-outdoor">
+            <div class="row">
+                <h2  class="white-heading">
+PAST HISTORY</h2>
+            
+            </div>
+            <div class="row info1">
+        <h4>{{srch.personal_history}}</h4>
+        </div>
+            <div class="row">
+            <div class="col span-1-of-3 info">
+             
+                    <h4>Surgical History</h4> 
+                    <p>
+                        {{srch.past_surgical_history}}
+                </p>
+
+      
+                
+             </div>
+            
+             <div class="col span-1-of-3 info">
+           
+                 <h4>Drug History</h4>
+             <p>
+                 
+                {{srch.past_drug_history}}
+
+                 </p>
+                    
+       
+             </div>
+            
+             <div class="col span-1-of-3 info">
+            
+        
+                              <h4>Drug Allergy</h4>
+                 <p>{{srch.drug_allergy}}
+
+                 </p>
+                               
+               
+             </div> 
+        </div>
+    <div class="row">
+
+            
+             <div class="col span-1-of-7 info">
+           
+                 <h4>Medical History</h4>
+             <p>
+                 {{srch.past_medical_history}}
+
+                 </p>
+                    
+       
+             </div>
+            
+              <div class="col span-1-of-7 info">
+             
+                    <h4>Vaccination History</h4> 
+                    <p>
+                        {{srch.vaccination_history}}
+                </p>
+                
+         </div>
+        </div>
+      
+
+        </section>
+        <section>
+        	
+        	<form action="{% url 'delete_history' patient.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+</form>
+<form action="{% url 'update_history' patient.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Update">
+</form>
+        </section>
+
+<section>
+ <div class="row tags">
+                <div class="col row box plan-box feedback0">
+                  
+                    <h3><strong>Presenting Complaint</strong></h3>
+                    <p>{{srch.presenting_complaint}}</p>
+                     
+                </div>
+                
+                <div class="col row box plan-box feedback1">
+                    
+                    <h3><strong>Complaint Details</strong></h3>
+                    <p>{{srch.presenting_complaint_detail}}</p>
+                  
+                
+                
+                </div>       
+                </div>
+<div>
+	Presenting Complaint Detail:<br>Symptoms:
+<ol>
+  <li>{{srch.symptom1}}</li>
+  <li>{{srch.symptom2}}</li>
+  <li>{{srch.symptom3}}</li>
+  <li>{{srch.symptom4}}</li>
+  <li>{{srch.symptom5}}</li>
+</ol>
+</div>
+ 
+        </section>
+
+{% endif %}
+
+{% if srch1 %}
+{% for srch in srch1 %}
+
+
+
+     <section class="section-schedule js--section-features js--section-declare" id="features">
+             
+   
+                    <div class="row">
+
+                        <h2 class="guidelines">{{srch.first_name}} {{srch.last_name}}</h2>
+                             <div class="col box ">
+                
+                        </div>    
+                    </div>
+
+            <div class="row js--wp-3">
+
+
+                <div class="row">
+
+                       <div class="col span-1-of-7">
+                <h4>Personal Information</h4>
+                                                <div class="container2">
+
+                                                  <ul class="responsive-table">
+                                                    <li class="table-header">
+                                                      <div class="coll coll-1"></div>
+                                                      <div class="coll coll-2"></div>
+    
+                                                    <li class="table-row">
+                                                      <div class="coll coll-1">First Name:</div>
+                                                      <div class="coll coll-2">{{srch.first_name}}
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1">Last Name:</div>
+                                                      <div class="coll coll-2">{{srch.last_name}}
+
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1">Age:</div>
+                                                      <div class="coll coll-2">
+{{srch.age}}
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1">Gender:</div>
+                                                      <div class="coll coll-2">
+                                                        {{srch.gender}}
+
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1"> Email:</div>
+                                                      <div class="coll coll-2">{{srch.email}}
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1">Address:</div>
+                                                      <div class="coll coll-2">{{srch.address}}
+                                                        </div>
+                                                     
+                                                    
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1"> Contact No:</div>
+                                                      <div class="coll coll-2">{{srch.phone}}
+
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1"> Occupation:</div>
+                                                      <div class="coll coll-2">{{srch.occupation}}
+
+                                                        </div>
+
+                                                    </li>                             
+
+
+
+                                                  </ul>
+                                                </div>
+
+                </div>
+
+                       <div class="col span-1-of-7">
+                <h4>Photograph</h4>
+                                                <div class="container2 photograph">
+
+                                                  <img src="{{ srch.image.url}}" alt="{{ patient.first_name }} {{patient.last_name}}">
+                                                </div>
+
+                </div>
+
+                </div>
+
+                    </section>
+
+<!-------------------------------------------------------------------------->
+<section>
+ <div class="row js--wp-4">
+                <h2>Past History</h2>
+            
+            </div>
+
+
+            <div class="row"></div>
+
+             
+                <div class="reports2 box doctor reports js--wp-1-2-0" id="box5">
+             <!-- feedback{{forloop.counter0}}">-->
+                    <!--<img src="{{media_url}}{{ forloop.counter.image }}" alt="lisbon">-->
+                    <div class="city-feature">
+                    </div>
+                     
+                              <div class="city-feature">
+                            <strong>Personal History:  </strong><br><br>
+                       {{srch.personal_history}}
+                    </div>
+                            <div class="city-feature">
+                            <strong>Surgical History: </strong><br><br>
+                        {{srch.past_surgical_history}}
+                    </div>
+
+         <div class="city-feature">
+                            <strong>Drug History: </strong><br><br>
+                        {{srch.past_drug_history}}
+                    </div>
+
+         <div class="city-feature">
+                            <strong>Drug Allergy </strong><br><br>
+                       {{srch.drug_allergy}}
+                    </div>
+
+
+   <div class="city-feature">
+                            <strong>Medical History </strong><br><br>
+                       {{srch.past_medical_history}}
+
+                    </div>
+   <div class="city-feature">
+                            <strong>Vaccination History </strong><br><br>
+                       
+                        {{srch.vaccination_history}}
+                    </div>
+
+
+
+
+
+
+                    <div>   
+            <!--        <form action="{% url 'delete_history' srch.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+</form>      -->
+                  <form action="{% url 'update_history' srch.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Update">
+</form>        
+
+         </div>
+
+                </div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+                       
+       
+
+<section>
+ <div class="row tags">
+                <div class="col row box plan-box feedback0">
+                  
+                    <h3><strong>Presenting Complaint</strong></h3>
+                    <p>{{srch.presenting_complaint}}</p>
+                     
+                </div>
+           <!--     
+                <div class="col row box plan-box feedback1">
+                    
+                    <h3><strong>Complaint Details</strong></h3>
+                    <p>{{srch.presenting_complaint_detail}}</p>
+                  
+                
+                
+                </div>      --> 
+                </div>
+            </section>
+            <section>
+
+
+	                                <div class="container2">
+	                                	  <h4>Complaint Details</h4>
+
+                                                  <ul class="responsive-table">
+                                                    <li class="table-header">
+                                                      <div class="coll coll-1"></div>
+                                                      <div class="coll coll-2"></div>
+    
+                                                                        <li class="table-row">
+                                                      <div class="coll coll-1">Symptom-1:</div>
+                                                      <div class="coll coll-2">
+                                                        {{srch.symptom1}}
+
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1"> Symptom-2:</div>
+                                                      <div class="coll coll-2">{{srch.symptom2}}
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1">Symptom-3:</div>
+                                                      <div class="coll coll-2">{{srch.symptom3}}
+                                                        </div>
+                                                     
+                                                    
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1"> Symptom-4:</div>
+                                                      <div class="coll coll-2">{{srch.symptom4}}
+
+                                                        </div>
+
+                                                    </li>                              <li class="table-row">
+                                                      <div class="coll coll-1"> Symptom-5:</div>
+                                                      <div class="coll coll-2">{{srch.symptom5}}
+
+                                                        </div>
+
+                                                    </li>                             
+
+
+
+                                                  </ul>
+                     </section>
+
+
+
+
+
+
+
+
+
+{% endfor %}
+
+{% endif %}
+
+{% endif %}
+
+
+
+
+
+
+   {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% if message %}
 <h4>{{ message }}</h4>
 {% endif %}
@@ -39,11 +577,11 @@ Drug Allergy: {{patient.drug_allergy}}<br>
 Vaccination History: {{patient.vaccination_history}}<br>
 Personal History: {{patient.personal_history}}<br>
 Economic Status: {{patient.economic_status}}<br>
-<form action="{% url 'delete_history' patient.id %}" method="post">
+<form action="{% url 'delete_history' srch.id %}" method="post">
     {% csrf_token %}
     <input type="submit" value="Delete">
 </form>
-<form action="{% url 'update_history' patient.id %}" method="post">
+<form action="{% url 'update_history' srch.id %}" method="post">
     {% csrf_token %}
     <input type="submit" value="Update">
 </form>

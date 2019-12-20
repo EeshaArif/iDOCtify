@@ -53,9 +53,9 @@ def update_patienthistory(request, patient_id):
 
 def search(request):
     if request.method == 'POST':
-        srch = request.POST['srch']
-        if srch:
-            match_patient = Patient.objects.filter(Q(first_name__icontains = srch)| Q(last_name__icontains = srch))
+        srch1 = request.POST.get('srch1',False)
+        if srch1:
+            match_patient = Patient.objects.filter(Q(first_name__icontains = srch1)| Q(last_name__icontains = srch1))
             for x in match_patient:
                 list = [x.symptom1,x.symptom2,x.symptom3,x.symptom4,x.symptom5]
                 list.sort(key=lambda x: x or 0)
@@ -66,7 +66,7 @@ def search(request):
                 x.symptom5 = list[4]
                 x.save()
             if match_patient:
-                return render(request,"display.html",{'srch': match_patient})
+                return render(request,"display.html",{'srch1': match_patient})
             else:
                 message = "No records Found"
                 return render(request, "display.html", {'message': message})
