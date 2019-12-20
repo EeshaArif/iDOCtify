@@ -1,0 +1,41 @@
+{% if message %}
+<h4>{{ message }}</h4>
+{% endif %}
+
+{% if srch %}
+{% for patient in srch %}
+First Name: {{patient.first_name}}<br>
+Last Name: {{patient.last_name}}<br>
+Address: {{patient.address}}<br>
+Phone: {{patient.phone}}<br>
+Age: {{patient.age}}<br>
+Gender: {{patient.gender}}<br>
+Email: {{patient.email}}<br>
+Image: <img src="{{ patient.image.url}}" alt="{{ patient.first_name }} {{patient.last_name}}"><br>
+Occupation: {{patient.occupation}}<br>
+Presenting Complaint: {{patient.presenting_complaint}}<br>
+Presenting Complaint Detail:<br>Symptoms:
+<ol>
+  <li>{{patient.symptom1}}</li>
+  <li>{{patient.symptom2}}</li>
+  <li>{{patient.symptom3}}</li>
+  <li>{{patient.symptom4}}</li>
+  <li>{{patient.symptom5}}</li>
+</ol>
+Past Medical History: {{patient.past_medical_history}}<br>
+Past Surgical History: {{patient.past_surgical_history}}<br>
+Past Drug History: {{patient.past_drug_history}}<br>
+Drug Allergy: {{patient.drug_allergy}}<br>
+Vaccination History: {{patient.vaccination_history}}<br>
+Personal History: {{patient.personal_history}}<br>
+Economic Status: {{patient.economic_status}}<br>
+<form action="{% url 'delete_history' patient.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+</form>
+<form action="{% url 'update_history' patient.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Update">
+</form>
+{% endfor %}
+{% endif %}

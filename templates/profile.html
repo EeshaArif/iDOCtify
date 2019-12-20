@@ -1,0 +1,13 @@
+My Page
+<form class="" action="{% url 'display' %}" method="post">
+  {% csrf_token %}
+  <input type="text" name="srch" placeholder="Enter first name or last name">
+  <button type="submit" name="button">Search</button>
+</form>
+
+<a href="{% url 'history' %}">Save New History</a>
+<form class="" action="" method="post">
+  <input type="button" name="patient-history" value="Search History by face recognition">
+</form>
+<a href="{% url 'account_logout' %}">Logout</a>
+  <a href="/detect"><img  class="img-responsive" /> detect </a>
