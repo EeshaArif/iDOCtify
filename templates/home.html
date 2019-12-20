@@ -1,4 +1,53 @@
+{% extends "base_.html" %}
+{% load static %}
+            {% block content %} 
+            <header class="section-index">
+                {% include "navbar.html" %}
+                
+                        <div class="row">
+            <div class="cd-intro">
+            <div class="hero-text-box  cd-intro-content mask-2">
+                <div class="content-wrapper">
+                    <div>
+                    
+                
+                    <h1>Patientio <br></h1>
+                   <p> Your Health Becomes Priority.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tincidunt dictum augue ut aliquet. Nunc id dui turpis. in dui et dictum.   <br> </p>
+                   
+                   
+                    <div class="action-wrapper">
+                <a class="btn btn-full js--scroll-to-plans letterbtn" href="/detect" >Detect </a>
+           
+                 <a class="btn btn-ghost btn2 js--scroll-to-start contactbtn" id="contactbtn" href="{% url 'account_login' %}">Log-in</a>  
+                        
+                    </div>
+                    
+            </div>
+                </div>
+            </div>
+                         </div>
+      
+               
+        </header>
+
+
+
+
+  {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
 My Profile
 <a href="{% url 'account_login' %}">Login</a>
-<a href="{% url 'account_login' %}">Signup</a>
+
   <a href="/detect"><img class="img-responsive" />detect</a>
