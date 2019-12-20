@@ -80,6 +80,7 @@ def detect(request):
         #eesha_image=face_recognition.load_image_file(Eesha.image)
         video_capture = cv2.VideoCapture(0)
 
+
         known_face_encodings = []
         known_face_names = []
         for patient in Patients:
@@ -130,6 +131,7 @@ def detect(request):
                 font = cv2.FONT_HERSHEY_DUPLEX
                 cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
                 
+            cv2.imshow('video', frame)
 
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -138,7 +140,7 @@ def detect(request):
  
         video_capture.release()
         cv2.destroyAllWindows()
-        if face_names[0]!="Unknown":
+        if (face_names) and (face_names[0]!="Unknown") :
 
             match_patient=Patient.objects.get(first_name=face_names[0])
             return render(request,"display.html",{'srch': match_patient})

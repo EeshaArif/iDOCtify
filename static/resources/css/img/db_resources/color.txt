@@ -1,2 +1,0 @@
-#3b6969 main color
-rgba(124, 186, 190, 0.88) light color

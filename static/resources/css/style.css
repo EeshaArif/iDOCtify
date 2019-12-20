@@ -560,7 +560,7 @@ input[type=submit]:hover
 /*-----------------------------------------------*/
 
 header{
-    background-image:linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.9)),url(img/db_resources/physicians-reporting.jpg);
+    background-image:linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.9)),url(img/rec1.jpg);
 
     background-size:cover;
     background-position: center;
@@ -1867,7 +1867,7 @@ footer p{
   margin-left: 20%;
 }
 .section-index .cd-intro-content{
-    margin-left:25%;
+    margin-left:33%;
   margin-top:10%;
 }
 .cd-intro-content {
