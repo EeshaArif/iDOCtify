@@ -74,44 +74,49 @@ def search(request):
     return render(request, 'profile.html')
 
 def detect(request):
-       
+        context =  { 'patients': Patient.objects.all() }
+        Patients=Patient.objects.all()
+        #eesha_image=face_recognition.load_image_file(Eesha.image)
         video_capture = cv2.VideoCapture(0)
 
         # Load a sample picture and learn how to recognize it.
         """
         obama_image = face_recognition.load_image_file("obama.jpg")
         obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
-
+    
         # Load a second sample picture and learn how to recognize it.
         biden_image = face_recognition.load_image_file("biden.jpg")
         biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
         ayyan_image=face_recognition.load_image_file("ayyan.jpg")
         ayyan_face_encoding = face_recognition.face_encodings(ayyan_image)[0]
-        eesha_image=face_recognition.load_image_file("eesha.jpg")
-        eesha_face_encoding = face_recognition.face_encodings(eesha_image)[0]
-        arif_image=face_recognition.load_image_file("arif.jpg")
-        arif_face_encoding = face_recognition.face_encodings(arif_image)[0]
+        eesha_image=face_recognition.load_image_file("eesha.jpg")"""
+       # eesha_face_encoding = face_recognition.face_encodings(eesha_image)[0]
+      #  arif_image=face_recognition.load_image_file("arif.jpg")
+       # arif_face_encoding = face_recognition.face_encodings(arif_image)[0]
 
 
         # Create arrays of known face encodings and their names
         known_face_encodings = [
-            obama_face_encoding,
-            biden_face_encoding,
-            ayyan_face_encoding,
-            eesha_face_encoding,
-            arif_face_encoding
+           # obama_face_encoding,
+           # biden_face_encoding,
+           # ayyan_face_encoding,
+           # eesha_face_encoding
+           # arif_face_encoding
 
             ]
         known_face_names = [
-            "Barack Obama",
-            "Joe Biden",
-            "Ayyan Arif",
-            "Eesha Arif",
-            "Arif Saleem"
-        ]"""
-        # Initialize some variables
-        known_face_encodings=[]
-        known_face_names=[]
+           # "Barack Obama",
+          #  "Joe Biden",
+            #"Ayyan Arif",
+           # "Eesha Arif"
+         #   "Arif Saleem"
+        ]
+        for patient in Patients:
+            known_face_encodings.append(face_recognition.face_encodings(face_recognition.load_image_file(patient.image))[0])
+            known_face_names.append(patient.first_name + patient.last_name)
+            # Initialize some variables
+       # known_face_encodings=[]
+        #known_face_names=[]
         face_locations = []
         face_encodings = []
         face_names = []

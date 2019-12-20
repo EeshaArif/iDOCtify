@@ -6,7 +6,7 @@ My Page
 </form>
 
 <a href="{% url 'history' %}">Save New History</a>
-<form class="" action="" method="post">
+<form class="" action="{% url 'display' %}" method="post">
   <input type="button" name="patient-history" value="Search History by face recognition">
 </form>
 <a href="{% url 'account_logout' %}">Logout</a>
