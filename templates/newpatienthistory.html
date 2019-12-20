@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <form method="post" enctype="multipart/form-data">
+{% extends "account/base.html" %}
+
+
+
+{% block content %}
+
+<section>
+    <form class="login signinform" id="update-form" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit" name="button">Submit</button>
+      <button class="btn btn-full1" type="submit" name="button">Submit</button>
     </form>
-  </body>
-</html>
+
+
+</section>
+
+    {% endblock %}
+

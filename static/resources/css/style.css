@@ -583,6 +583,19 @@ header{
     overflow: hidden;
 
 }
+#update-form{
+    min-width:100%;
+    margin-left:-5%;
+}
+#update-form #id_gender li{
+    text-decoration: none;
+    padding-right:40%;
+    padding-top: 5%;
+    
+}
+#update-form .errorlist{
+    display: none;
+}
 .signinform button{
     margin-top: 10%;
     margin-bottom:-5%;
