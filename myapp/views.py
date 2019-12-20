@@ -8,6 +8,7 @@ from .forms import PatientHistory
 from django.db.models import Q
 import face_recognition
 import cv2
+import time
 import numpy as np
 # Create your views here.
 
@@ -113,7 +114,7 @@ def detect(request):
         ]
         for patient in Patients:
             known_face_encodings.append(face_recognition.face_encodings(face_recognition.load_image_file(patient.image))[0])
-            known_face_names.append(patient.first_name + patient.last_name)
+            known_face_names.append(patient.first_name)
             # Initialize some variables
        # known_face_encodings=[]
         #known_face_names=[]
@@ -131,6 +132,7 @@ def detect(request):
 
             # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
             rgb_small_frame = small_frame[:, :, ::-1]
+            name_parts=[]
 
             # Only process every other frame of video to save time
             if process_this_frame:
@@ -155,7 +157,9 @@ def detect(request):
                     if matches[best_match_index]:
                         name = known_face_names[best_match_index]
 
+
                     face_names.append(name)
+                  
 
             process_this_frame = not process_this_frame
 
@@ -175,16 +179,27 @@ def detect(request):
                 cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
                 font = cv2.FONT_HERSHEY_DUPLEX
                 cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
+                
 
             # Display the resulting image
             cv2.imshow('Video', frame)
-
+            #t_end = time.time() + 10
+            #if (cv2.waitKey(1)) or (time.time() > t_end):
+                
+              
             # Hit 'q' on the keyboard to quit!
             if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
+                 break
 
         # Release handle to the webcam
         video_capture.release()
         cv2.destroyAllWindows()
+        if face_names[0]!="Unknown":
+
+            match_patient=Patient.objects.get(first_name=face_names[0])
+            return render(request,"display.html",{'srch': match_patient})
+
+        
+
         return redirect('/')
 

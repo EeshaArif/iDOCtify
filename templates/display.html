@@ -3,6 +3,16 @@
 {% endif %}
 
 {% if srch %}
+
+First Name: {{srch.first_name}}<br>
+Last Name: {{srch.last_name}}<br>
+Address: {{srch.address}}<br>
+Phone: {{srch.phone}}<br>
+Age: {{srch.age}}<br>
+Gender: {{srch.gender}}<br>
+Email: {{srch.email}}<br>
+
+{% else %}
 {% for patient in srch %}
 First Name: {{patient.first_name}}<br>
 Last Name: {{patient.last_name}}<br>
