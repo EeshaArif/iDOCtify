@@ -1,6 +1,7 @@
 from django import forms
 from .models import Patient
-
+#username: EeshaArif
+#password: eesha
 CHOICES=[('male','Male'),
          ('female','Female'),
          ('other', 'Other')

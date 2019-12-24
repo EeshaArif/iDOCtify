@@ -1,7 +1,8 @@
 from django.urls import path
 from django.conf.urls import url, include
 from . import views
-
+#username: EeshaArif
+#password: eesha
 urlpatterns = [
     path('',views.home, name='home'),
     url(r'^detect$', views.detect, name='detect'),
