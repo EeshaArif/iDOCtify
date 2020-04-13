@@ -145,7 +145,7 @@ def detect(request):
 
             match_patient=Patient.objects.get(first_name=face_names[0])
             return render(request,"display.html",{'srch': match_patient})
-
+ 
         
 
         return redirect('/')

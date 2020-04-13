@@ -2,14 +2,14 @@
 
 {% block content %}
 <header id="detect-header">
-<form class="login signinform" id="login3"action="{% url 'display' %}" method="post">
+<!--<form class="login signinform" id="login3"action="{% url 'display' %}" method="post">
   {% csrf_token %}
   <P>
   <input type="text" name="srch1" placeholder="Enter first name or last name">
 </P><p>
   <button type="submit" name="button">Search</button>
 </p>
-</form>
+</form>-->
 <!--<div class="Row">
 <a href="{% url 'history' %}">Save New History</a>
 </div>-->
@@ -17,7 +17,9 @@
 <form class="login signinform"  action="#"  method="post">
 	<p>Try our facial recognition feature</p>
 	<p>
- <a class="btn btn-full1" href="/detect"><img  class="img-responsive" /> detect </a>
+ <a class="btn btn-full1" href="/admin"><img  class="img-responsive" /> Add Patient</a>
+ <a class="btn btn-full1" href="/detect"><img  class="img-responsive" /> Detect </a>
+
 </form>
 <!--<a href="{% url 'account_logout' %}">Logout</a>-->
 <!--<div class="row">
